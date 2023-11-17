@@ -24,7 +24,9 @@ movies_data.each do |movie_data|
   )
 
   # Associate the movie with a random genre
-  movie.movie_genres << MovieGenre.all.sample
+  genre = MovieGenre.find_by(name: "Action") # You may need to adjust this based on the actual genre name
+  movie_genre = genre || MovieGenre.first
+  movie.movie_genres << movie_genre
 
   movie.save!
 end

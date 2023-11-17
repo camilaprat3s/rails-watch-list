@@ -4,3 +4,6 @@
 require_relative "config/application"
 
 Rails.application.load_tasks
+
+task default: %w[test]
+task default: %w[test db:migrate]
