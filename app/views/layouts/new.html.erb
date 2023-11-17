@@ -1,0 +1,32 @@
+<!-- app/views/bookmarks/new.html.erb -->
+<h1>New Bookmark</h1>
+
+<%= form_with(model: [@list, @bookmark], local: true) do |form| %>
+  <% if @bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+        <% @bookmark.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :movie_id %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :title, { prompt: 'Select a movie' }, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create Bookmark', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', @list, class: 'btn btn-secondary' %>
